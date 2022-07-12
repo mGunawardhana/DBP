@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+  ~  * Developed by - mGunawardhana
+  ~  * Contact email - mrgunawardhana27368@gmail.com
+  ~  * what's app - 071 - 9043372
+  -->
+
+
+<AnchorPane prefHeight="500.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentFormController">
+   <children>
+      <JFXTextField fx:id="studentTxt" layoutX="346.0" layoutY="73.0" promptText="Student Name" />
+      <JFXTextField fx:id="emailTxt" layoutX="546.0" layoutY="73.0" promptText="Email" />
+      <JFXTextField fx:id="ContactTxt" layoutX="146.0" layoutY="138.0" promptText="Contact" />
+      <JFXTextField fx:id="AddressTxt" layoutX="346.0" layoutY="138.0" promptText="Address" />
+      <JFXTextField fx:id="NicTxt" layoutX="546.0" layoutY="138.0" promptText="Nic" />
+      <Label fx:id="idLbl" layoutX="146.0" layoutY="73.0" prefHeight="31.0" prefWidth="127.0" />
+      <TableView fx:id="studentTbl" layoutX="30.0" layoutY="221.0" prefHeight="236.0" prefWidth="687.0">
+        <columns>
+          <TableColumn fx:id="idColumnName" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="NameColumn" prefWidth="75.0" text="S_Name" />
+            <TableColumn fx:id="emailColumn" prefWidth="75.0" text="E-mail" />
+            <TableColumn fx:id="ContactColumn" prefWidth="75.0" text="Contact" />
+            <TableColumn fx:id="AddressColumn" prefWidth="75.0" text="Address" />
+            <TableColumn fx:id="nicColumn" prefWidth="75.0" text="Nic" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <JFXButton fx:id="btnSave" layoutX="760.0" layoutY="235.0" onAction="#btnSave_OnAction" text="Save" />
+      <JFXButton fx:id="btnAddNew" layoutX="745.0" layoutY="190.0" onAction="#btnAddNew_OnAction" text="Add New" />
+      <JFXButton fx:id="btnDelete" layoutX="755.0" layoutY="288.0" onAction="#btnDelete_OnAction" text="Delete" />
+      <JFXTextField fx:id="searchID" layoutX="661.0" layoutY="31.0" onAction="#searchOnIDOnAction" promptText="Email" text="Search" />
+   </children>
+</AnchorPane>
