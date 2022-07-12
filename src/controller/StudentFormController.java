@@ -60,7 +60,6 @@ public class StudentFormController {
         }
     }
 
-
     public void btnSave_OnAction(ActionEvent actionEvent) {
         student s = new student(idLbl.getText(), studentTxt.getText(), emailTxt.getText(), ContactTxt.getText(), AddressTxt.getText(), NicTxt.getText());
         try {
@@ -164,16 +163,12 @@ public class StudentFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        } catch (ClassNotFoundException ignored) {}
         return "STU-001";
     }
 
-
     public void updateOnAction(ActionEvent actionEvent) {
         student s = new student(idLbl.getText(), studentTxt.getText(), emailTxt.getText(), ContactTxt.getText(), AddressTxt.getText(), NicTxt.getText());
-
         try {
             boolean isUpdated = CrudUtil.execute("UPDATE Student SET studentName=? , email=? , contact=?,address=?,nic=? WHERE studentId=?", s.getStudentName(), s.getEmail(), s.getContact(), s.getAddress(), s.getNic(), s.getStudentId());
             if (isUpdated) {
