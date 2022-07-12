@@ -14,7 +14,7 @@ import lombok.*;
 @Getter
 @EqualsAndHashCode
 
-public class Student {
+public class student {
     private String studentId;
     private String studentName;
     private String email;

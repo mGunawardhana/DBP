@@ -38,6 +38,6 @@
       <JFXButton fx:id="btnSave" layoutX="745.0" layoutY="298.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #7bed9f;" text="Save" />
       <JFXButton fx:id="btnAddNew" layoutX="745.0" layoutY="235.0" onAction="#btnAddNew_OnAction" style="-fx-background-color: #eccc68;" text="Add New" />
       <JFXButton fx:id="btnDelete" layoutX="745.0" layoutY="365.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #ff4757;" text="Delete" />
-      <JFXTextField fx:id="searchID" layoutX="661.0" layoutY="31.0" onAction="#searchOnIDOnAction" promptText="Email" text="Search" />
+      <JFXTextField fx:id="searchID" layoutX="661.0" layoutY="31.0" onAction="#searchOnIDOnAction" promptText="Search" />
    </children>
 </AnchorPane>
