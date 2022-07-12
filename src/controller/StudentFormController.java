@@ -51,6 +51,8 @@ public class StudentFormController {
         AddressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         nicColumn.setCellValueFactory(new PropertyValueFactory<>("nic"));
 
+        idLbl.setDisable(true);
+
         try {
             loadAllStudent();
         } catch (ClassNotFoundException | SQLException e) {
@@ -96,9 +98,9 @@ public class StudentFormController {
     public void btnDelete_OnAction(ActionEvent actionEvent) {
         try {
             if (CrudUtil.execute("DELETE FROM Student WHERE studentId=?", searchID.getText())) {
+                studentTbl.refresh();
                 new Alert(Alert.AlertType.CONFIRMATION, "Deleted!").show();
             } else {
-                studentTbl.refresh();
                 new Alert(Alert.AlertType.WARNING, "Try Again!").show();
             }
         } catch (SQLException | ClassNotFoundException ignored) {
@@ -128,28 +130,61 @@ public class StudentFormController {
                     )
             );
         }
-        studentTbl.refresh();
         studentTbl.setItems(obList);
-
+        studentTbl.refresh();
     }
 
     public void search() throws SQLException, ClassNotFoundException {
 
-            ResultSet result = CrudUtil.execute("SELECT * FROM Student WHERE studentId=?", searchID.getText());
-            if (result.next()) {
+        ResultSet result = CrudUtil.execute("SELECT * FROM Student WHERE studentId=?", searchID.getText());
+        if (result.next()) {
 
-                studentTxt.setText(result.getString(2));
-                emailTxt.setText(result.getString(3));
-                ContactTxt.setText(result.getString(4));
-                AddressTxt.setText(result.getString(5));
-                NicTxt.setText(result.getString(6));
-                studentTbl.refresh();
+            idLbl.setText(result.getString(1));
+            studentTxt.setText(result.getString(2));
+            emailTxt.setText(result.getString(3));
+            ContactTxt.setText(result.getString(4));
+            AddressTxt.setText(result.getString(5));
+            NicTxt.setText(result.getString(6));
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Empty Result").show();
+        }
+        studentTbl.refresh();
+    }
+
+    private String generateNewId() {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            ResultSet rst = connection.createStatement().executeQuery("SELECT studentId FROM Student ORDER BY studentId DESC LIMIT 1");
+            if (rst.next()) {
+                String id = rst.getString("studentId");
+                int newItemId = Integer.parseInt(id.replace("STU-", "")) + 1;
+                return String.format("STU-%03d", newItemId);
             } else {
-                new Alert(Alert.AlertType.WARNING, "Empty Result").show();
+                return "STU-001";
             }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "STU-001";
     }
 
 
+    public void updateOnAction(ActionEvent actionEvent) {
+        student s = new student(idLbl.getText(), studentTxt.getText(), emailTxt.getText(), ContactTxt.getText(), AddressTxt.getText(), NicTxt.getText());
 
+        try {
+            boolean isUpdated = CrudUtil.execute("UPDATE Student SET studentName=? , email=? , contact=?,address=?,nic=? WHERE studentId=?", s.getStudentName(), s.getEmail(), s.getContact(), s.getAddress(), s.getNic(), s.getStudentId());
+            if (isUpdated) {
+                studentTbl.refresh();
+                new Alert(Alert.AlertType.CONFIRMATION, "Updated!").show();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Try Again!").show();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
