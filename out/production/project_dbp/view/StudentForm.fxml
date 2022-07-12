@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <!--
@@ -13,7 +15,6 @@
   ~  * what's app - 071 - 9043372
   -->
 
-
 <AnchorPane prefHeight="500.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentFormController">
    <children>
       <JFXTextField fx:id="studentTxt" layoutX="346.0" layoutY="73.0" promptText="Student Name" />
@@ -21,8 +22,8 @@
       <JFXTextField fx:id="ContactTxt" layoutX="146.0" layoutY="138.0" promptText="Contact" />
       <JFXTextField fx:id="AddressTxt" layoutX="346.0" layoutY="138.0" promptText="Address" />
       <JFXTextField fx:id="NicTxt" layoutX="546.0" layoutY="138.0" promptText="Nic" />
-      <Label fx:id="idLbl" layoutX="146.0" layoutY="73.0" prefHeight="31.0" prefWidth="127.0" />
-      <TableView fx:id="studentTbl" layoutX="30.0" layoutY="221.0" prefHeight="236.0" prefWidth="687.0">
+      <Label fx:id="idLbl" layoutX="167.0" layoutY="73.0" prefHeight="31.0" prefWidth="127.0" />
+      <TableView fx:id="studentTbl" layoutX="30.0" layoutY="221.0" prefHeight="236.0" prefWidth="687.0" stylesheets="@styles/Style.css">
         <columns>
           <TableColumn fx:id="idColumnName" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="NameColumn" prefWidth="75.0" text="S_Name" />
@@ -40,5 +41,11 @@
       <JFXButton fx:id="btnDelete" layoutX="745.0" layoutY="401.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #ff4757;" text="Delete" />
       <JFXTextField fx:id="searchID" layoutX="661.0" layoutY="31.0" onAction="#searchOnIDOnAction" promptText="Search" />
       <JFXButton layoutX="745.0" layoutY="348.0" onAction="#updateOnAction" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #e056fd;" text="Update" />
+      <Label fx:id="idLbl1" layoutX="46.0" layoutY="73.0" prefHeight="31.0" prefWidth="38.0" text="ID - " />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="791.0" layoutY="32.0" pickOnBounds="true">
+         <image>
+            <Image url="@assets/search.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
